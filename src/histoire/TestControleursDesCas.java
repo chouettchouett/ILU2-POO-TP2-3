@@ -40,14 +40,14 @@ public class TestControleursDesCas {
 		}
 
 		// Cas 3 : Verifier Identification
-//		System.out.println("///////////////////////////////");
-//		System.out.println("Cas 3 : Verifier Identification");
-//		ControlVerifierIdentite controlVerifierIdentite = new ControlVerifierIdentite(
-//				village);
-//		boolean vendeur = controlVerifierIdentite.verifierIdentite("Panoramix");
-//		System.out.println("Panoramix est un villageois ? " + vendeur);
-//		vendeur = controlVerifierIdentite.verifierIdentite("Intrus");
-//		System.out.println("Intrus est un villageois ? " + vendeur);
+		System.out.println("///////////////////////////////");
+		System.out.println("Cas 3 : Verifier Identification");
+		ControlVerifierIdentite controlVerifierIdentite = new ControlVerifierIdentite(
+				village);
+		boolean vendeur = controlVerifierIdentite.verifierIdentite("Panoramix");
+		System.out.println("Panoramix est un villageois ? " + vendeur);
+		vendeur = controlVerifierIdentite.verifierIdentite("Intrus");
+		System.out.println("Intrus est un villageois ? " + vendeur);
 
 		// Cas 4 : Prendre etal
 
