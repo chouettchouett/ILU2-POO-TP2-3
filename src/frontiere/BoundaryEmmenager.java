@@ -39,6 +39,7 @@ public class BoundaryEmmenager {
 					break;
 				}
 			} while (choixUtilisateur != 1 && choixUtilisateur != 2);
+			
 		}
 	}
 
@@ -66,4 +67,5 @@ public class BoundaryEmmenager {
 			
 		controlEmmenager.ajouterDuide(nomVisiteur, druide_force, druide_effetPotionMin, druide_effetPotionMax);
 	}
+	
 }

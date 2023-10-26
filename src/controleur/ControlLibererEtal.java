@@ -24,6 +24,10 @@ public class ControlLibererEtal {
 	
 	public String[] libererEtal(String nomVendeur) {
 		String[] donneesEtal = null;
+		if(isVendeur(nomVendeur) == false) {
+			System.out.println("Cette personne n'etait meme pas un vendeur ");
+			return donneesEtal;
+		}
 		Etal etal;
 		etal = controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
 		donneesEtal = etal.etatEtal();

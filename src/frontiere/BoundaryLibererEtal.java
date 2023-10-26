@@ -10,9 +10,7 @@ public class BoundaryLibererEtal {
 	}
 
 	public void libererEtal(String nomVendeur) {
-		boolean vendeurReconnu;
-		vendeurReconnu = controlLibererEtal.isVendeur(nomVendeur);
-		if (!vendeurReconnu) {
+		if (controlLibererEtal.isVendeur(nomVendeur) == false) {
 			System.out.println("Mais vous n etes pas inscrits sur notre marche aujourd'hui !");
 		} else {
 			String[] donneesEtal = null;
