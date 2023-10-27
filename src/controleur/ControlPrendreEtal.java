@@ -7,8 +7,7 @@ public class ControlPrendreEtal {
 	private Village village;
 	private ControlVerifierIdentite controlVerifierIdentite;
 
-	public ControlPrendreEtal(ControlVerifierIdentite controlVerifierIdentite,
-			Village village) {
+	public ControlPrendreEtal(ControlVerifierIdentite controlVerifierIdentite,Village village) {
 		this.controlVerifierIdentite = controlVerifierIdentite;
 		this.village = village;
 	}
