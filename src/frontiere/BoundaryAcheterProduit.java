@@ -36,16 +36,6 @@ public class BoundaryAcheterProduit {
 				nbProduit = Clavier.entrerEntier("Bonjour " + nomAcheteur + "\nCombien de " + produit + " voulez vous ?\n");
 				resultat = controlAcheterProduit.acheterProduit(produit, numeroMarchand, nbProduit, nomAcheteur);
 				System.out.println(resultat + "\n");
-				//
-//				if (resultat == 0) {
-//					System.out.println(nomAcheteur + " veut acheter " + quantite + " " + produit + " malheureusement il n y en a plus\n");
-//				} else if (resultat < quantite) {
-//					System.out.println(nomAcheteur + " veut acheter " + quantite + " " + produit
-//							+ " malheureusement il n y en a pas suffisament\n" + nomAcheteur + " a acheter les " + resultat
-//							+ " derniers.\n");
-//				} else {
-//					System.out.println(nomAcheteur + " a acheter " + resultat + " " + produit + " a " + nomVendeur + ".\n");
-//				}
 			}
 		}
 	}
