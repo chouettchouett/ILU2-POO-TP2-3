@@ -44,46 +44,55 @@ public class ControlAcheterProduit {
 		}
 		return chaine.toString();
 	}
-
-//	(String produit, int numero, int quantite, String nomAcheteur) {
-//	public String acheterProduit(String vendeur,int quantite) {
-//		StringBuilder chaine = new StringBuilder();
-//		Gaulois[] gauloisProduit;
-//		Gaulois gaulois;
-//		Etal etal;
-//		int resultat;
-//		String nomVendeur;
-//		nomVendeur = nomVendeur(produit, numero);
-//		gauloisProduit = vendeurProduit(produit);
-//		gaulois = gauloisProduit[numero - 1];
-//		etal = village.rechercherEtal(gaulois);
-//		resultat = etal.acheterProduit(quantite);
-//
-//		
-//		return nbProduitAcheter;
-//	}
-	public String acheterProduit(String produit, int numero, int quantite, String nomAcheteur) {
-		StringBuilder chaine = new StringBuilder();
-		Gaulois[] gauloisProduit;
-		Gaulois gaulois;
-		Etal etal;
-		int resultat;
-		String nomVendeur;
-		nomVendeur = nomVendeur(produit, numero);
-		gauloisProduit = vendeurProduit(produit);
-		gaulois = gauloisProduit[numero - 1];
-		etal = village.rechercherEtal(gaulois);
-		resultat = etal.acheterProduit(quantite);
-		if (resultat == 0) {
-			chaine.append(nomAcheteur + " veut acheter " + quantite + " " + produit + " malheureusement il n y en a plus\n");
-		} else if (resultat < quantite) {
-			chaine.append(nomAcheteur + " veut acheter " + quantite + " " + produit
-					+ " malheureusement il n y en a pas suffisament\n" + nomAcheteur + " a acheter les " + resultat
-					+ " derniers.\n");
-		} else {
-			chaine.append(nomAcheteur + " a acheter " + resultat + " " + produit + " a " + nomVendeur + ".\n");
-		}
-		return chaine.toString();
+	public String acheterProduit(String nomAcheteur, String produit) {
+	    StringBuilder chaine = new StringBuilder();
+	    
+	    // Vérifie l'identité de l'acheteur avec ControlVerifierIdentite
+	    boolean acheteurValide = controlVerifierIdentite.verifierIdentite(nomAcheteur);
+	    
+	    if (!acheteurValide) {
+	        return nomAcheteur + " n'est pas un villageois valide. L'achat est impossible.";
+	    }
+	    
+	    // Trouve tous les étals qui vendent le produit demandé
+	    List<Etal> etalsVendeurs = controlTrouverEtalVendeur.trouverEtalsVendeurs(produit);
+	    
+	    if (etalsVendeurs.isEmpty()) {
+	        return "Désolé, personne ne vend " + produit + " au marché.";
+	    }
+	    
+	    chaine.append("Chez quels commerçants voulez-vous acheter " + produit + " ?\n");
+	    
+	    for (int i = 0; i < etalsVendeurs.size(); i++) {
+	        Etal etal = etalsVendeurs.get(i);
+	        chaine.append(i + 1 + " - " + etal.getNomVendeur() + "\n");
+	    }
+	    
+	    int choixEtal = /* Demande à l'utilisateur de choisir un étal */;
+	    
+	    if (choixEtal < 1 || choixEtal > etalsVendeurs.size()) {
+	        return "Choix d'étal invalide. L'achat est annulé.";
+	    }
+	    
+	    Etal etalChoisi = etalsVendeurs.get(choixEtal - 1);
+	    
+	    // Demandez la quantité souhaitée à l'acheteur
+	    int quantiteSouhaitee = /* Demande à l'utilisateur la quantité souhaitée */;
+	    
+	    int quantiteAchete = etalChoisi.acheterProduit(produit, quantiteSouhaitee);
+	    
+	    if (quantiteAchete == 0) {
+	        chaine.append(nomAcheteur + " veut acheter " + quantiteSouhaitee + " " + produit + ", malheureusement il n'y en a plus !");
+	    } else if (quantiteAchete < quantiteSouhaitee) {
+	        chaine.append(nomAcheteur + " veut acheter " + quantiteSouhaitee + " " + produit
+	                + ", malheureusement il n'y en a pas suffisamment.\n" + nomAcheteur + " a acheté les " + quantiteAchete
+	                + " derniers.");
+	    } else {
+	        chaine.append(nomAcheteur + " a acheté " + quantiteAchete + " " + produit + " chez " + etalChoisi.getNomVendeur() + ".");
+	    }
+	    
+	    return chaine.toString();
 	}
+
 	
 }
