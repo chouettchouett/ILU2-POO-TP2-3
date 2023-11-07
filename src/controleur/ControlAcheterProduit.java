@@ -3,6 +3,7 @@ package controleur;
 import personnages.Gaulois;
 import villagegaulois.Etal;
 import villagegaulois.Village;
+import java.util.Scanner;
 //import controleur.controlTrouverEtalVendeur;
 
 public class ControlAcheterProduit {
@@ -44,55 +45,55 @@ public class ControlAcheterProduit {
 		}
 		return chaine.toString();
 	}
-	public String acheterProduit(String nomAcheteur, String produit) {
-	    StringBuilder chaine = new StringBuilder();
-	    
-	    // Vérifie l'identité de l'acheteur avec ControlVerifierIdentite
-	    boolean acheteurValide = controlVerifierIdentite.verifierIdentite(nomAcheteur);
-	    
-	    if (!acheteurValide) {
-	        return nomAcheteur + " n'est pas un villageois valide. L'achat est impossible.";
-	    }
-	    
-	    // Trouve tous les étals qui vendent le produit demandé
-	    List<Etal> etalsVendeurs = controlTrouverEtalVendeur.trouverEtalsVendeurs(produit);
-	    
-	    if (etalsVendeurs.isEmpty()) {
-	        return "Désolé, personne ne vend " + produit + " au marché.";
-	    }
-	    
-	    chaine.append("Chez quels commerçants voulez-vous acheter " + produit + " ?\n");
-	    
-	    for (int i = 0; i < etalsVendeurs.size(); i++) {
-	        Etal etal = etalsVendeurs.get(i);
-	        chaine.append(i + 1 + " - " + etal.getNomVendeur() + "\n");
-	    }
-	    
-	    int choixEtal = /* Demande à l'utilisateur de choisir un étal */;
-	    
-	    if (choixEtal < 1 || choixEtal > etalsVendeurs.size()) {
-	        return "Choix d'étal invalide. L'achat est annulé.";
-	    }
-	    
-	    Etal etalChoisi = etalsVendeurs.get(choixEtal - 1);
-	    
-	    // Demandez la quantité souhaitée à l'acheteur
-	    int quantiteSouhaitee = /* Demande à l'utilisateur la quantité souhaitée */;
-	    
-	    int quantiteAchete = etalChoisi.acheterProduit(produit, quantiteSouhaitee);
-	    
-	    if (quantiteAchete == 0) {
-	        chaine.append(nomAcheteur + " veut acheter " + quantiteSouhaitee + " " + produit + ", malheureusement il n'y en a plus !");
-	    } else if (quantiteAchete < quantiteSouhaitee) {
-	        chaine.append(nomAcheteur + " veut acheter " + quantiteSouhaitee + " " + produit
-	                + ", malheureusement il n'y en a pas suffisamment.\n" + nomAcheteur + " a acheté les " + quantiteAchete
-	                + " derniers.");
-	    } else {
-	        chaine.append(nomAcheteur + " a acheté " + quantiteAchete + " " + produit + " chez " + etalChoisi.getNomVendeur() + ".");
-	    }
-	    
-	    return chaine.toString();
-	}
-
 	
+	    public String acheterProduit(String nomAcheteur, String produit) {
+	        StringBuilder chaine = new StringBuilder();
+	        
+	        // Vérification de l'identité de l'acheteur
+	        if (!controlVerifierIdentite.verifierIdentite(nomAcheteur)) {
+	            return "Désolé, vous devez être un habitant du village pour acheter au marché.";
+	        }
+	        
+	        // Recherche des vendeurs de ce produit
+	        Etal[] etals = controlTrouverEtalVendeur.trouverEtalsVendeurs(produit);
+	        
+	        if (etals.length == 0) {
+	            return "Désolé, personne ne vend ce produit au marché.";
+	        }
+	        
+	        // Affichage des vendeurs disponibles
+	        chaine.append("Chez quel commerçant voulez-vous acheter " + produit + " ?\n");
+	        for (int i = 0; i < etals.length; i++) {
+	            chaine.append((i + 1) + " - " + etals[i].getVendeur().getNom() + "\n");
+	        }
+	        
+	        // Demandez à l'utilisateur de choisir un étal
+	        Scanner scanner = new Scanner(System.in);
+	        int choixEtal = -1;
+	        while (choixEtal < 1 || choixEtal > etals.length) {
+	            System.out.print(chaine.toString());
+	            System.out.print("Entrez le numéro de l'étal où vous voulez acheter : ");
+	            choixEtal = scanner.nextInt();
+	        }
+	        
+	        Etal etalChoisi = etals[choixEtal - 1];
+	        
+	        // Demandez la quantité souhaitée à l'acheteur
+	        System.out.print("Quelle quantité de " + produit + " souhaitez-vous acheter ? ");
+	        int quantiteSouhaitee = scanner.nextInt();
+	        
+	        // Achetez le produit
+	        int quantiteAchete = etalChoisi.acheterProduit(quantiteSouhaitee);
+	        
+	        if (quantiteAchete == 0) {
+	            chaine.append(nomAcheteur + " veut acheter " + quantiteSouhaitee + " " + produit + ", mais il n'y en a plus.");
+	        } else if (quantiteAchete < quantiteSouhaitee) {
+	            chaine.append(nomAcheteur + " veut acheter " + quantiteSouhaitee + " " + produit +
+	                    ", mais l'étal n'en a que " + quantiteAchete + ". Il a acheté tout le stock disponible.");
+	        } else {
+	            chaine.append(nomAcheteur + " a acheté " + quantiteAchete + " " + produit + " chez " + etalChoisi.getVendeur().getNom() + ".");
+	        }
+	        
+	        return chaine.toString();
+	    }
 }
