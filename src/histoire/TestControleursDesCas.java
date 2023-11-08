@@ -56,7 +56,7 @@ public class TestControleursDesCas {
 		ControlPrendreEtal controlPrendreEtal = new ControlPrendreEtal(
 				controlVerifierIdentite, village);
 		int numeroEtal = controlPrendreEtal.prendreEtal("Obelix", "fleur", 5);
-		System.out.println("Obelix a pris l'Etal n°" + numeroEtal);
+		System.out.println("Obelix a pris l'Etal nï¿½" + numeroEtal);
 
 		// Cas 5 : trouverEtalVendeur
 
@@ -91,7 +91,7 @@ public class TestControleursDesCas {
 		System.out.println("[0] : un boolean indiquant si l'Etal est occupe ");
 		System.out.println("[1] : nom du vendeur");
 		System.out.println("[2] : produit vendu");
-		System.out.println("[3] : quantite de produit A vendre au debut du marche");
+		System.out.println("[3] : quantite de produit Aï¿½vendre au debut du marche");
 		System.out.println("[4] : quantite de produit vendu");
 		for (String string : ventesObelix) {
 			System.out.println(string);

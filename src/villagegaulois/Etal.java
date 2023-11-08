@@ -8,6 +8,7 @@ public class Etal {
 	private int quantiteDebutMarche;
 	private int quantite;
 	private boolean etalOccupe = false;
+	private int length;
 
 	public boolean isEtalOccupe() {
 		return etalOccupe;
@@ -23,6 +24,10 @@ public class Etal {
 
 	public String getProduit() {
 		return produit;
+	}
+	
+	public int getLength() {
+		return length;
 	}
 
 	public void occuperEtal(Gaulois vendeur, String produit, int quantite) {
