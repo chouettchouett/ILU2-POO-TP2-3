@@ -45,7 +45,8 @@ class ControlLibererEtalTest {
 		assertNull(controlLibererEtal.libererEtal("Jhon"));
 		assertNotNull(controlLibererEtal.libererEtal("Asterix"));
 		
-
 	}
 
+	// assertEquals(expected,actual) teste l'égalité(au sens du equals)entre param 1 et 2
+	
 }
