@@ -36,6 +36,16 @@ public class BoundaryAcheterProduit {
 
 
 
+
+
+
+
+
+
+
+
+
+
 //package frontiere;
 //
 //import java.util.Scanner;

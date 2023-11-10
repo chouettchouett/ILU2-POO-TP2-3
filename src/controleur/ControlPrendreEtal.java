@@ -5,10 +5,8 @@ import villagegaulois.Village;
 
 public class ControlPrendreEtal {
 	private Village village;
-	private ControlVerifierIdentite controlVerifierIdentite;
 
-	public ControlPrendreEtal(ControlVerifierIdentite controlVerifierIdentite,Village village) {
-		this.controlVerifierIdentite = controlVerifierIdentite;
+	public ControlPrendreEtal(Village village) {
 		this.village = village;
 	}
 
@@ -24,7 +22,7 @@ public class ControlPrendreEtal {
 	}
 
 	public boolean verifierIdentite(String nomVendeur) {
-		return controlVerifierIdentite.verifierIdentite(nomVendeur);
+		return village.trouverHabitant(nomVendeur) != null;
 	}
 	
 }

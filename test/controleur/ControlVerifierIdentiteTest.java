@@ -12,7 +12,7 @@ import villagegaulois.Village;
 class ControlVerifierIdentiteTest {
 	private Village village;
 	private Chef abraracourcix;
-	private Gaulois Bonemine;
+	private ControlVerifierIdentite controlVerifierIdentite;
 
 	
 	@BeforeEach
@@ -20,21 +20,21 @@ class ControlVerifierIdentiteTest {
 		System.out.println("Initialisation...");
 		village = new Village("le village des irréductibles", 10, 5); 
 		abraracourcix = new Chef ("Abraracourcix", 19, village); 
+		Gaulois asterix = new Gaulois("Asterix",10);
+		village.ajouterHabitant(asterix);
 		village.setChef(abraracourcix);
+		controlVerifierIdentite = new ControlVerifierIdentite(village);
 	}
 	
 	@Test
-	void testControlVerifierIdentite() {
-		ControlVerifierIdentite controlVerifierIdentite = new ControlVerifierIdentite(village);
-		assertNotNull(controlVerifierIdentite,"Ne renvoie pas null");
+	void testControlVerifierIdentiteExiste() {
+		assertTrue(controlVerifierIdentite.verifierIdentite("Asterix"));
+
 	}
 
 	@Test
-	void testVerifierIdentite() {
-		ControlVerifierIdentite controlVerifierIdentite = new ControlVerifierIdentite(village);
-		assertTrue(controlVerifierIdentite.verifierIdentite("abraracourcix"));
-		assertNull(controlVerifierIdentite.verifierIdentite("Bonemine"));
-		assertNull(controlVerifierIdentite.verifierIdentite(""));
+	void testControlVerifierIdentiteNonExiste() {
+		assertFalse( controlVerifierIdentite.verifierIdentite("Jhon"));
 	}
 
 }

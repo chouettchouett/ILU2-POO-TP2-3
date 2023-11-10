@@ -4,7 +4,6 @@ import personnages.Gaulois;
 import villagegaulois.Etal;
 import villagegaulois.Village;
 
-import java.util.Objects;
 
 public class ControlAcheterProduit {
 	private Village village;
@@ -24,10 +23,10 @@ public class ControlAcheterProduit {
 		StringBuilder chaine = new StringBuilder();
 		String[] marchands = null;
 		if(listeMarchands == null) {
-			chaine.append("Désolé personne ne vend ce produit au marché.\n");
+			chaine.append("Desole personne ne vend ce produit au marche.\n");
 		} else {
 			marchands = new String[listeMarchands.length];
-			chaine.append("Chez quel commerçant voulez-vous acheter des ");
+			chaine.append("Chez quel commercant voulez-vous acheter des ");
 			chaine.append(produit);
 			chaine.append(" ?\n");
 			for (int i = 0; i < listeMarchands.length; i++) {
@@ -49,6 +48,16 @@ public class ControlAcheterProduit {
 		return etal.acheterProduit(quantite);
 	}
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

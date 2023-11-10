@@ -39,7 +39,7 @@ public class BoundaryEmmenager {
 					break;
 				}
 			} while (choixUtilisateur != 1 && choixUtilisateur != 2);
-			
+
 		}
 	}
 
@@ -52,20 +52,18 @@ public class BoundaryEmmenager {
 		druide_force = Clavier.entrerEntier(druide_emmenage.toString());
 		// potion
 		int druide_effetPotionMin = -1;
-		int druide_effetPotionMax = -2;	
-		do{
-			druide_emmenage.append("Quel est la potion la plus faible que vous produisez ? \n");
-			druide_effetPotionMin = Clavier.entrerEntier(druide_emmenage.toString());
-	
-			druide_emmenage.append("Quel est la potion la plus forte que vous produisez ? \n");
-			druide_effetPotionMax = Clavier.entrerEntier(druide_emmenage.toString());
-			
-			if(druide_effetPotionMax < druide_effetPotionMin) {
+		int druide_effetPotionMax = -2;
+		do {
+			druide_effetPotionMin = Clavier.entrerEntier("Quel est la potion la plus faible que vous produisez ? \n");
+
+			druide_effetPotionMax = Clavier.entrerEntier("Quel est la potion la plus forte que vous produisez ? \n");
+
+			if (druide_effetPotionMax < druide_effetPotionMin) {
 				druide_emmenage.append("Attention Druide, vous vous etes tromper entre le minimum et le maximum \n");
-				}
-		}while(druide_effetPotionMax < druide_effetPotionMin);
-			
+			}
+		} while (druide_effetPotionMax < druide_effetPotionMin);
+
 		controlEmmenager.ajouterDuide(nomVisiteur, druide_force, druide_effetPotionMin, druide_effetPotionMax);
 	}
-	
+
 }

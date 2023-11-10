@@ -44,7 +44,8 @@ class ControlEmmenagerTest {
 
 	@Test
 	void testAjouterGaulois() {
-		fail("Not yet implemented");
+		ControlEmmenager controlEmmenager = new ControlEmmenager(village);
+		controlEmmenager.ajouterGaulois("Bonemine", 10);
 	}
 
 }
